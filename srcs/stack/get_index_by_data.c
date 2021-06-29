@@ -1,0 +1,29 @@
+#include "../../includes/push_swap.h"
+
+/*
+* Function: stk_get_index_by_data
+* -----------------
+* desc:     get index of the corresponding data.
+*
+* stack:    the stack in which to look for the data.
+* data:     the data we are looking for.
+*
+* return:   index of the corresponding data.
+*/
+
+int	stk_get_index_by_data(t_stack *stack, int data)
+{
+	int	index;
+
+	if (!stack)
+		return (-1);
+	index = 0;
+	while (stack)
+	{
+		if (stack->data == data)
+			return (index);
+		stack = stack->next;
+		index++;
+	}
+	return (index);
+}
