@@ -15,13 +15,15 @@ int	main(int ac, char **av)
 	a = NULL;
 	b = NULL;
 	if (ac < 2)
-		return (error());
+		return (0);
 	count = parse(&a, av, ac);
 	if (!count)
 	{
 		free_stack_chunk(&a, &b);
 		return (error());
 	}
+	else if (is_sorted(a, count))
+		return (0);
 	else if (count > 1 && count <= 3)
 		sorting_three(&a, count);
 	else if (count > 3 && count <= 5)
