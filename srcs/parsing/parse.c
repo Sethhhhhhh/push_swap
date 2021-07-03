@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yviavant <yviavant@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/03 14:25:45 by yviavant          #+#    #+#             */
+/*   Updated: 2021/07/03 16:13:43 by yviavant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/push_swap.h"
 
 /*
@@ -64,13 +76,16 @@ static int	check_duplicate(t_stack *a)
 
 static int	is_allowed_char(char **str, int i, int j)
 {
-	if (ft_isdigit(str[i][j]) || ft_isspace(str[i][j])
-		|| ((str[i][j] == '-' || str[i][j] == '+')
-		&& (!str[i][j] || ((str[i][j + 1]
-		&& ft_isdigit(str[i][j + 1]))
-		&& (!str[i][j - 1] || (str[i][j - 1]
-		&& ft_isspace(str[i][j - 1])))))))
+	if (!str || !str[i])
+		return (0);
+	if (ft_isdigit(str[i][j]))
 		return (1);
+	if (ft_isspace(str[i][j]))
+		return (1);
+	if (str[i][j] == '-')
+		if (((j - 1) >= 0 && ft_isspace(str[i][j - 1])) || j == 0)
+			if ((j + 1) < (int)ft_strlen(str[i]) && ft_isdigit(str[i][j + 1]))
+				return (1);
 	return (0);
 }
 
